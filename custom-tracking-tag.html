@@ -1,0 +1,46 @@
+// This code should be added to a Custom HTML tag in Matomo and it should be executed when the window is loaded
+// It has been tested with  
+<script>
+//Declare the TagManager so its availile in the browser
+var _mtm = _mtm || [];
+//Declare an object that contains all objects that contains all elements with data-attribute tracking
+var trackingObjects = document.querySelectorAll('[data-eventcategory]');
+//Loop through the objects and add click events
+for (var i = 0; i < trackingObjects.length; i++) {
+    if (typeof trackingObjects[i].getAttribute('data-eventcategory') !== 'undefined') {
+        trackingObjects[i].addEventListener("mousedown",
+            function () {
+                _mtm.push({
+                    'event': 'dataLayerTrackEvent',
+                    'data-eventcategory': this.getAttribute('data-eventcategory'),
+                    'data-eventaction': this.getAttribute('data-eventaction'),
+                    'data-eventname': this.getAttribute('data-eventname'),
+                    'data-eventvalue': Number(this.getAttribute('data-eventvalue'))
+                });
+            }
+        );
+
+    }  
+    //Also add tracking to children with attribute data-t-include
+    childs = trackingObjects[i].children;
+    for (var j = 0; j < childs.length; j++) {
+        if (childs[j].getAttribute('data-event-include') != null) {
+            trackingObjects[i].addEventListener("mousedown",
+                function () {
+                    _mtm.push({
+                        'event': 'dataLayerTrackEvent',
+                        'data-eventcategory': $(this).closest("[data-eventtype]").attr('data-eventcategory'),
+                        'data-eventaction': $(this).closest("[data-eventtype]").attr('data-eventaction'),
+                        'data-eventname': $(this).closest("[data-eventtype]").attr('data-eventname'),
+                        'data-eventvalue': Number($(this).closest("[data-eventtype]").attr('data-eventvalue'))
+
+                    });
+                }
+            );
+        }
+
+    }
+
+}
+
+</script>
