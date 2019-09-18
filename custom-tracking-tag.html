@@ -1,46 +1,30 @@
-// This code should be added to a Custom HTML tag in Matomo and it should be executed when the window is loaded
-// It has been tested with  
-<script>
-//Declare the TagManager so its availile in the browser
+// This code should be added to a Custom HTML tag placed in body end in Matomo TagManager and it should be executed on pageview
+//It will fire a custom event as soon as a user clicks on elements with the data-attribute data-event-category set
+//We also support child objects to the data-event-category, where the data-event-include is set.
+<script type="text/javascript">
 var _mtm = _mtm || [];
-//Declare an object that contains all objects that contains all elements with data-attribute tracking
-var trackingObjects = document.querySelectorAll('[data-eventcategory]');
-//Loop through the objects and add click events
-for (var i = 0; i < trackingObjects.length; i++) {
-    if (typeof trackingObjects[i].getAttribute('data-eventcategory') !== 'undefined') {
-        trackingObjects[i].addEventListener("mousedown",
-            function () {
+document.documentElement.addEventListener('mousedown', function (event) {
+     if (event.target.getAttribute('data-event-category') != null) {
                 _mtm.push({
-                    'event': 'dataLayerTrackEvent',
-                    'data-eventcategory': this.getAttribute('data-eventcategory'),
-                    'data-eventaction': this.getAttribute('data-eventaction'),
-                    'data-eventname': this.getAttribute('data-eventname'),
-                    'data-eventvalue': Number(this.getAttribute('data-eventvalue'))
-                });
-            }
-        );
+                  'event': 'customEvent',
+                      'eventCategory': event.target.getAttribute('data-event-category'),
+                      'eventAction': event.target.getAttribute('data-event-action'),
+                      'eventName': event.target.getAttribute('data-event-name'),
+                      'eventValue': Number(event.target.getAttribute('data-event-value'))
+                });  
 
-    }  
-    //Also add tracking to children with attribute data-t-include
-    childs = trackingObjects[i].children;
-    for (var j = 0; j < childs.length; j++) {
-        if (childs[j].getAttribute('data-event-include') != null) {
-            trackingObjects[i].addEventListener("mousedown",
-                function () {
-                    _mtm.push({
-                        'event': 'dataLayerTrackEvent',
-                        'data-eventcategory': $(this).closest("[data-eventtype]").attr('data-eventcategory'),
-                        'data-eventaction': $(this).closest("[data-eventtype]").attr('data-eventaction'),
-                        'data-eventname': $(this).closest("[data-eventtype]").attr('data-eventname'),
-                        'data-eventvalue': Number($(this).closest("[data-eventtype]").attr('data-eventvalue'))
+     }
+     else if (event.target.getAttribute('data-event-include') != null) {
+                _mtm.push({
+                  'event': 'customEvent',
+                      'eventCategory': event.target.closest('data-event-category'),
+                      'eventAction': event.target.closest('data-event-action'),
+                      'eventName': event.target.closest('data-event-name'),
+                      'eventValue': Number(event.target.closest('data-event-value'))
+                });  
 
-                    });
-                }
-            );
-        }
+     }     
 
-    }
-
-}
-
+         
+}, true);
 </script>
