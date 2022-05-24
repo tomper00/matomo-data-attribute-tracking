@@ -1,6 +1,7 @@
 // Data-attribute tracking by
 // Tomas Persson - Digitalist.se 
-// This script will send events directly to Matomo (will not use TagManager)
+// This script will send events to Matomo TagManager
+
 /**
 Usage:
 Add this script to any page where you have the Matomo script running.
