@@ -6,11 +6,9 @@ This is good if you want to enforce more control of your tracking within you cod
 
 It is also very clear where you have tracking in place, when you develop new features or update old features on your site.
 
-I have 2 example scripts to help you get started:
+**I have 2 example scripts to help you get started:**
 attribute-tracking-paq.js - Send data directly to Matomo
-attribute-tracking-mtm.js - Send data to Matomo Tag Manager - this adds an extra layer of separation, wich is good if you want to manage exeptions in the TagManager. 
-
-
+attribute-tracking-mtm.js - Send data to Matomo Tag Manager - this adds an extra layer of separation, wich is good if you want to manage exeptions in the TagManager or just inherit things you already set up such as custom dimensions etc. 
 
 # HTML Examples
 
@@ -46,6 +44,17 @@ Adding data-event-include to a child will catch clicks and read event data from 
 
 
 
+# Setting up the TagManager 
+*Note this is only needed if you use the script attribute-tracking-mtm.js
+
+You will need to add the following in the TagManager to make it work:
+A Trigger named: customEvent 
+A variable (type datalayer) named: eventCategory
+Variable (type datalayer) named: eventAction
+Variable (type datalayer) named: eventName
+Variable (type datalayer) named: eventValue
+
+Finally you need to set up a **Matomo Event Tag** where you use the triggers and variables above that sends an event to Matomo.
 
 
 
