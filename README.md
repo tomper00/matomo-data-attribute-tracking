@@ -6,9 +6,15 @@ This is good if you want to enforce more control of your tracking within you cod
 
 It is also very clear where you have tracking in place, when you develop new features or update old features on your site.
 
+Read more about Matomo tracking here:
+https://developer.matomo.org/guides/tracking-javascript-guide
+
+
 **I have 2 example scripts to help you get started:**
 ### attribute-tracking-paq.js - Send data directly to Matomo
 - Simple but be careful if you already have the TagManager in place.
+
+
 ### attribute-tracking-mtm.js - Send data to Matomo Tag Manager 
 - this adds an extra layer of separation, wich is good if you want to manage exeptions in the TagManager or just inherit things you already set up such as custom dimensions etc. 
 
