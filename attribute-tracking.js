@@ -1,8 +1,15 @@
 // Data-attribute tracking by
 // Tomas Persson - Digitalist.se 
 // This script will send events directly to Matomo (will not use TagManager)
+/**
+Usage:
+Add this script to any page where you have the Matomo script running.
 
-//Get matomo from datalayer
+The script will catch clicks on elements with the data attribute data-event-category or data-event-include
+
+**/
+
+//Get Matomo 
 var _paq = window._paq = window._paq || [];
 
 // Send data to Matomo function
