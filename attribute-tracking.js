@@ -1,3 +1,7 @@
+// Data-attribute tracking by
+// Tomas Persson - Digitalist.se 
+// This script will send events directly to Matomo (will not use TagManager)
+
 //Get matomo from datalayer
 var _paq = window._paq = window._paq || [];
 
