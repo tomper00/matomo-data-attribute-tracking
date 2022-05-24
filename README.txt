@@ -12,9 +12,9 @@ attribute-tracking-mtm.js - Send data to Matomo Tag Manager - this adds an extra
 
 
 
-#HTML Examples
+# HTML Examples
 
-##An simple button example
+## An simple button example
 
 <button
  data-event-category="Click"
