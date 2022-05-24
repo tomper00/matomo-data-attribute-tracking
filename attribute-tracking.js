@@ -4,8 +4,16 @@
 /**
 Usage:
 Add this script to any page where you have the Matomo script running.
-
 The script will catch clicks on elements with the data attribute data-event-category or data-event-include
+
+An example would be
+<div data-event-category="Button"
+        data-event-action="Click"
+       data-event-name="Buy Milk"
+       data-event-value="4">
+            <a href="https://example.com" data-event-include>Click Me!</a>
+            <i class="arrow" data-event-include>
+</div>
 
 **/
 
